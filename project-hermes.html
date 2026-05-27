@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes I — TARC 2025 | Ad Astra</title>
+<link rel="icon" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f3e9dc;
+  --blue: #1c3e5b;
+  --yellow: #d3a32e;
+  --gray: #a3a7a8;
+  --dark: #07101d;
+  --dark2: #0c1b2e;
+  --dark3: #111f32;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  background:rgba(7,16,29,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(211,163,46,0.18);
+}
+.nav-logo{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:1.15rem;
+  color:var(--yellow);letter-spacing:0.18em;text-decoration:none;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.nav-logo span{color:var(--cream);}
+.nav-back{
+  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gray);text-decoration:none;
+  display:flex;align-items:center;gap:0.5rem;
+  transition:color 0.25s;
+}
+.nav-back:hover{color:var(--yellow);}
+.nav-back svg{width:14px;height:14px;transition:transform 0.25s;}
+.nav-back:hover svg{transform:translateX(-3px);}
+
+/* HERO */
+.proj-hero{
+  position:relative;padding:130px 3rem 80px;
+  max-width:1200px;margin:0 auto;
+}
+.proj-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);
+  margin-bottom:1.2rem;display:flex;align-items:center;gap:0.75rem;
+}
+.proj-eyebrow::after{content:'';display:block;width:40px;height:1px;background:rgba(211,163,46,0.4);}
+.proj-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,9vw,7rem);
+  color:var(--cream);line-height:0.92;letter-spacing:0.04em;
+}
+.proj-title em{font-style:normal;color:var(--yellow);}
+.proj-tagline{
+  font-family:'IBM Plex Mono',monospace;font-size:0.8rem;
+  letter-spacing:0.12em;color:var(--gray);
+  margin-top:1.5rem;max-width:520px;line-height:1.7;
+}
+.status-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  margin-top:1.5rem;
+}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.s-active{color:#4ade80;}.s-active .dot{background:#4ade80;animation:pulseDot 2s ease infinite;}
+.s-plan{color:var(--yellow);}.s-plan .dot{background:var(--yellow);}
+.s-done{color:var(--gray);}.s-done .dot{background:var(--gray);}
+
+/* PROGRESS */
+.hero-progress{
+  margin-top:2.5rem;
+  display:flex;align-items:center;gap:1.5rem;
+}
+.prog-track{flex:1;max-width:280px;height:3px;background:rgba(28,62,91,0.5);}
+.prog-fill{height:100%;background:linear-gradient(to right,var(--blue),var(--yellow));}
+.prog-pct{
+  font-family:'Orbitron',monospace;font-weight:700;font-size:1.6rem;
+  color:var(--yellow);
+}
+.prog-label{
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.12em;color:var(--gray);
+}
+
+/* DIVIDER */
+.divider{
+  width:100%;height:1px;
+  background:linear-gradient(to right,transparent,rgba(211,163,46,0.25),transparent);
+  margin:0;
+}
+
+/* MAIN LAYOUT */
+.proj-body{
+  max-width:1200px;margin:0 auto;
+  padding:5rem 3rem 8rem;
+  display:grid;grid-template-columns:1fr 360px;gap:5rem;align-items:start;
+}
+@media(max-width:960px){.proj-body{grid-template-columns:1fr;gap:3rem;padding:3rem 2rem 6rem;}}
+
+/* CONTENT */
+.section-eye{
+  font-family:'IBM Plex Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--yellow);
+  margin-bottom:0.75rem;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,3.2rem);color:var(--cream);line-height:1;
+  margin-bottom:2rem;
+}
+.prose p{
+  font-size:0.93rem;line-height:1.9;
+  color:rgba(243,233,220,0.72);margin-bottom:1.4rem;
+}
+
+/* SPEC TABLE */
+.spec-block{margin:3rem 0;}
+.spec-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid rgba(28,62,91,0.3);
+  padding:0.85rem 0;
+}
+.spec-row:first-child{border-top:1px solid rgba(28,62,91,0.3);}
+.spec-key{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);
+}
+.spec-val{
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+  color:var(--cream);
+}
+
+/* PHASE CARDS */
+.phases{display:flex;flex-direction:column;gap:2px;margin:2rem 0;}
+.phase-card{
+  padding:1.5rem 1.8rem;
+  background:rgba(28,62,91,0.08);
+  border:1px solid rgba(28,62,91,0.35);
+  border-left:3px solid var(--yellow);
+  transition:all 0.3s;
+}
+.phase-card:hover{background:rgba(28,62,91,0.2);border-left-color:var(--yellow);}
+.phase-num{
+  font-family:'IBM Plex Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--yellow);
+  margin-bottom:0.35rem;
+}
+.phase-name{
+  font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;
+  color:var(--cream);letter-spacing:0.06em;margin-bottom:0.5rem;
+}
+.phase-desc{font-size:0.82rem;color:var(--gray);line-height:1.6;}
+
+/* TAGS */
+.tag-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0;}
+.tag{
+  font-family:'IBM Plex Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.3rem 0.75rem;
+  border:1px solid rgba(163,167,168,0.25);color:var(--gray);
+}
+
+/* MEDIA PLACEHOLDER */
+.media-block{
+  margin:2.5rem 0;
+  border:1px solid rgba(28,62,91,0.35);
+  border-radius:4px;overflow:hidden;
+  background:rgba(28,62,91,0.08);
+}
+.media-ph{
+  min-height:260px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;
+  border:1px dashed rgba(163,167,168,0.2);margin:1.5rem;border-radius:4px;
+  font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+  color:rgba(163,167,168,0.5);text-align:center;
+}
+.media-ph svg{opacity:0.3;}
+.media-caption{
+  padding:1rem 1.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+  color:rgba(163,167,168,0.6);letter-spacing:0.08em;
+  border-top:1px solid rgba(28,62,91,0.3);
+}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:90px;}
+.sidebar-card{
+  background:rgba(28,62,91,0.1);
+  border:1px solid rgba(28,62,91,0.4);
+  padding:1.8rem;margin-bottom:1rem;
+}
+.sidebar-card h4{
+  font-family:'Orbitron',monospace;font-size:0.75rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:1.2rem;
+}
+.meta-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:0.5rem 0;border-bottom:1px solid rgba(28,62,91,0.25);
+}
+.meta-row:last-child{border-bottom:none;}
+.meta-key{
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);
+}
+.meta-val{
+  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+  color:var(--cream);
+}
+.dl-btn{
+  display:block;width:100%;
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.85rem 1rem;margin-top:0.5rem;
+  background:transparent;border:1px solid rgba(211,163,46,0.35);
+  color:var(--yellow);cursor:pointer;text-align:left;
+  transition:all 0.25s;text-decoration:none;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.dl-btn:hover{background:rgba(211,163,46,0.08);border-color:var(--yellow);}
+.dl-btn svg{flex-shrink:0;opacity:0.7;}
+
+/* RESULTS */
+.results-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:2rem 0;
+}
+.result-box{
+  padding:1.5rem 1.2rem;
+  background:rgba(28,62,91,0.1);border:1px solid rgba(28,62,91,0.35);
+  text-align:center;
+}
+.result-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;
+  color:var(--yellow);line-height:1;
+}
+.result-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);
+  margin-top:0.35rem;
+}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr 1fr;}}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(28,62,91,0.3);
+  padding:2.5rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:0.9rem;color:var(--yellow);letter-spacing:0.18em;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:rgba(163,167,168,0.5);}
+
+@keyframes pulseDot{
+  0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5);}
+  50%{box-shadow:0 0 0 4px rgba(74,222,128,0);}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">AD <span>ASTRA</span></a>
+  <a class="nav-back" href="index.html#projects">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+    Back to Projects
+  </a>
+</nav>
+
+<div class="proj-hero">
+  <div class="proj-eyebrow">Competition Entry · TARC 2025</div>
+  <h1 class="proj-title">TARC 2025 —<br><em>Hermes I</em></h1>
+  <p class="proj-tagline">Single-stage high-power rocket designed for the Team America Rocketry Challenge. Target: 800ft apogee with an intact egg payload return.</p>
+  <div class="status-badge s-active"><div class="dot"></div>Active Development</div>
+  <div class="hero-progress">
+    <div>
+      <div class="prog-pct">65%</div>
+      <div class="prog-label">Design &amp; Build Complete</div>
+    </div>
+    <div style="flex:1;max-width:240px;">
+      <div class="prog-track"><div class="prog-fill" style="width:65%"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="proj-body">
+  <!-- MAIN CONTENT -->
+  <div>
+    <div class="section-eye">Overview</div>
+    <h2 class="section-title">Mission<br>Summary</h2>
+    <div class="prose">
+      <p>Hermes I is Ad Astra's primary competition vehicle for the Team America Rocketry Challenge (TARC), the nation's largest student rocketry competition. The rocket must reach exactly 800 feet of apogee, carry a raw egg payload, and return it to the ground uncracked within a target flight time window.</p>
+      <p>The airframe uses a fiberglass layup over a foam mandrel, chosen for its combination of high stiffness and low weight. The fin can is carbon fiber reinforced to maintain stability under the aerodynamic loads expected at TARC flight velocities.</p>
+    </div>
+
+    <div class="tag-list">
+      <span class="tag">Propulsion</span>
+      <span class="tag">Structures</span>
+      <span class="tag">Recovery</span>
+      <span class="tag">Competition</span>
+      <span class="tag">Fiberglass</span>
+      <span class="tag">Egg Payload</span>
+    </div>
+
+    <div class="media-block">
+      <div class="media-ph">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a3a7a8" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Rocket photo / CAD render<br>Replace with actual image</span>
+      </div>
+      <div class="media-caption">FIG 01 — Hermes I airframe, fiberglass layup over foam mandrel</div>
+    </div>
+
+    <div class="spec-block">
+      <div class="section-eye">Technical Specs</div>
+      <h2 class="section-title">Vehicle<br>Parameters</h2>
+      <div class="spec-row"><span class="spec-key">Diameter</span><span class="spec-val">3.0 in (76 mm)</span></div>
+      <div class="spec-row"><span class="spec-key">Length</span><span class="spec-val">TBD — pending final build</span></div>
+      <div class="spec-row"><span class="spec-key">Target Apogee</span><span class="spec-val">800 ft (244 m)</span></div>
+      <div class="spec-row"><span class="spec-key">Motor Class</span><span class="spec-val">F / G class (TARC legal)</span></div>
+      <div class="spec-row"><span class="spec-key">Airframe Material</span><span class="spec-val">Fiberglass over foam mandrel</span></div>
+      <div class="spec-row"><span class="spec-key">Fin Material</span><span class="spec-val">Carbon fiber reinforced</span></div>
+      <div class="spec-row"><span class="spec-key">Recovery System</span><span class="spec-val">Dual deployment parachute</span></div>
+      <div class="spec-row"><span class="spec-key">Payload</span><span class="spec-val">Raw egg in foam-lined capsule</span></div>
+      <div class="spec-row"><span class="spec-key">Simulation Tool</span><span class="spec-val">OpenRocket + AeroViz</span></div>
+    </div>
+
+    <div class="section-eye">Design Process</div>
+    <h2 class="section-title">Development<br>Phases</h2>
+    <div class="phases">
+      <div class="phase-card">
+        <div class="phase-num">Phase 01</div>
+        <div class="phase-name">Requirements &amp; Simulation</div>
+        <div class="phase-desc">Defined TARC scoring constraints. Built baseline OpenRocket model and ran Monte Carlo dispersions via AeroViz to identify optimal motor and ballast configuration for a consistent 800ft apogee across varied weather conditions.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 02</div>
+        <div class="phase-name">Airframe Fabrication</div>
+        <div class="phase-desc">Laid up fiberglass over foam mandrel for the main body tube. Carbon fiber fin can fabricated separately and bonded with aerospace-grade epoxy. Centering rings machined from plywood.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 03</div>
+        <div class="phase-name">Recovery System Design</div>
+        <div class="phase-desc">Designed dual-deployment system: drogue parachute deploys at apogee for a high-speed descent, main parachute deploys at 400ft for soft landing. Ejection charges sized based on bay volume calculations.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 04 — Current</div>
+        <div class="phase-name">Egg Payload Integration</div>
+        <div class="phase-desc">Developing egg protection capsule with foam crush zones and a secure mounting interface. Testing G-load survivability for the egg across simulated landing profiles.</div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 05 — Upcoming</div>
+        <div class="phase-name">Test Flights &amp; Tuning</div>
+        <div class="phase-desc">Conduct minimum of two qualification flights with egg payload before TARC qualifying event. Document each flight for post-flight analysis review.</div>
+      </div>
+    </div>
+
+    <div class="media-block">
+      <div class="media-ph">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a3a7a8" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>OpenRocket trajectory plot<br>Replace with actual simulation screenshot</span>
+      </div>
+      <div class="media-caption">FIG 02 — OpenRocket simulation output, 800ft target apogee configuration</div>
+    </div>
+
+    <div class="section-eye">Notes</div>
+    <h2 class="section-title">Lessons &amp;<br>Observations</h2>
+    <div class="prose">
+      <p>Early simulations revealed that achieving a consistent 800ft apogee requires tight motor selection tolerances — a difference of half a grain of propellant results in a ~30ft apogee variation. This pushed the team to focus heavily on the Monte Carlo dispersion analysis tools in AeroViz.</p>
+      <p>The carbon fiber fin can fabrication proved more complex than anticipated. First-attempt fins showed delamination at the root fillet joint, requiring a revised epoxy schedule and clamp technique. This was resolved on the second attempt.</p>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h4>Project Info</h4>
+      <div class="meta-row"><span class="meta-key">Status</span><span class="meta-val" style="color:#4ade80;">Active</span></div>
+      <div class="meta-row"><span class="meta-key">Category</span><span class="meta-val">Competition</span></div>
+      <div class="meta-row"><span class="meta-key">Competition</span><span class="meta-val">TARC 2025</span></div>
+      <div class="meta-row"><span class="meta-key">Progress</span><span class="meta-val">65%</span></div>
+      <div class="meta-row"><span class="meta-key">Team</span><span class="meta-val">Full Club</span></div>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Project Files</h4>
+      <a class="dl-btn" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        OpenRocket File (.ork)
+      </a>
+      <a class="dl-btn" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Design Review Slides (.pdf)
+      </a>
+      <a class="dl-btn" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Flight Log (.csv)
+      </a>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Related Projects</h4>
+      <a class="dl-btn" href="project-aeroviz.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        AeroViz Simulation Suite
+      </a>
+      <a class="dl-btn" href="project-openalt.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        OpenAlt Altimeter
+      </a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-logo">AD ASTRA</div>
+  <div class="footer-copy">© 2026 Ad Astra Aerospace Engineering Club</div>
+</footer>
+
+</body>
+</html>
