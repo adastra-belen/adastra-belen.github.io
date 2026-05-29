@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ad Astra — Aerospace Engineering Club</title>
-<link rel="icon" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon_nobg2.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --cream: #f3e9dc;
@@ -30,14 +30,14 @@ nav{
   border-bottom:1px solid rgba(211,163,46,0.18);
 }
 .nav-logo{
-  font-family:'Orbitron',monospace;font-weight:900;font-size:1.15rem;
+  font-family:'Space Grotesk',monospace;font-weight:900;font-size:1.15rem;
   color:var(--yellow);letter-spacing:0.18em;cursor:pointer;
   display:flex;align-items:center;gap:0.5rem;text-decoration:none;
 }
 .nav-logo span{color:var(--cream);}
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
 .nav-links a{
-  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  font-family:'Space Grotesk',monospace;font-size:0.7rem;
   letter-spacing:0.15em;text-transform:uppercase;
   color:var(--gray);text-decoration:none;cursor:pointer;
   transition:color 0.25s;padding:0.25rem 0;
@@ -117,7 +117,7 @@ nav{
   color:var(--yellow);margin-bottom:0.85rem;
 }
 .hero-stat p{
-  font-family:'IBM Plex Mono',monospace;font-size:0.92rem;
+  font-family:'Space Grotesk',monospace;font-size:0.92rem;
   color:rgba(243,233,220,0.9);line-height:1.6;margin:0;
 }
 .section-logo{
@@ -202,12 +202,14 @@ nav{
   padding:0.85rem 2.2rem;border:none;transition:all 0.3s;
 }
 .btn-primary{
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
   background:var(--yellow);color:#07101d;font-weight:500;
   clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
 }
 .btn-primary:hover{background:var(--cream);transform:translateY(-2px);}
 .btn-outline{
-  background:transparent;color:var(--cream);
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;
+  background:var(--cream);color:var(--dark2);
   border:1px solid rgba(243,233,220,0.25);
 }
 .btn-outline:hover{border-color:var(--yellow);color:var(--yellow);}
@@ -751,8 +753,8 @@ footer{
       </div>
     </div>
     <div class="hero-cta">
-      <button class="btn btn-primary" onclick="showPage('about')">Our Mission</button>
-      <button class="btn btn-outline" onclick="showPage('projects')">View Projects</button>
+      <button class="btn-primary" onclick="showPage('about')">Our Mission</button>
+      <button class="btn-outline" onclick="showPage('projects')">View Projects</button>
     </div>
     <div class="scroll-hint">Scroll to launch<div class="scroll-arrow"></div></div>
   </section>
